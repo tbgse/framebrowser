@@ -11,16 +11,6 @@ const generateHeadImageUrl = (src, width) => {
   return `https://images.aceandtate.com/image/upload/c_lfill,h_550,w_400/c_crop,h_500,w_400/v1/${src}`;
 };
 
-const Container = styled.div`
-  position: relative;
-  min-width: 250px;
-  flex: 1 2;
-  flex-grow: 1;
-  margin: ${sizes.gutter / 2}px;
-  cursor: pointer;
-  background: linear-gradient(to right, #f0eae8, #f4eeec);
-`;
-
 const ContainerInner = styled.div`
   position: relative;
   overflow: hidden;
@@ -119,10 +109,7 @@ export default class ProductCard extends React.Component {
   }
   render() {
     return (
-      <Container
-        onMouseEnter={this.showRandomHead}
-        onMouseLeave={this.resetHead}
-      >
+      <div onMouseEnter={this.showRandomHead} onMouseLeave={this.resetHead}>
         <ContainerInner>
           <Link to={`/product/${this.props.id}`}>
             <ImageContent src={generateImageUrl(this.props.backgroundUrl)} />
@@ -146,7 +133,7 @@ export default class ProductCard extends React.Component {
             </TextContent>
           </Link>
         </ContainerInner>
-      </Container>
+      </div>
     );
   }
 }
