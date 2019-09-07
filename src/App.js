@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Layout from "./components/Layout";
+import { getAllFrames } from "./services";
+import { connect } from "react-redux";
+import { setFrameData } from "./redux/actions";
+import DiscoveryView from "./views/DiscoveryView";
+import ProductView from "./views/ProductView";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+class App extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <Router>
+          <Route exact path="/" component={DiscoveryView} />
+          <Route path="/product/:productId" component={ProductView} />
+        </Router>
+      </Layout>
+    );
+  }
+
+  handleFrameLoad(frameData) {
+    this.props.setFrameData(frameData);
+  }
+
+  componentDidMount() {
+    getAllFrames()
+      .then(res => {
+        this.handleFrameLoad(res.data);
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        // handle error
+      });
+  }
 }
 
-export default App;
+export default connect(
+  null,
+  { setFrameData }
+)(App);
