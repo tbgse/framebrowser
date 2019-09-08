@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { typography, sizes } from "../../../styles";
 import { Button } from "../../../components";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   margin-left: ${sizes.gutter * 4}px;
@@ -34,7 +35,8 @@ const ModelDescription = styled.span`
   margin-bottom: ${sizes.gutter * 4}px;
   font-weight: 300;
 `;
-export default ({ name, variant, description }) => {
+
+export const ProductDetails = ({ name, variant, description }) => {
   return (
     <Wrapper>
       <ModelName>{name}</ModelName>
@@ -46,4 +48,10 @@ export default ({ name, variant, description }) => {
       </OrderInfo>
     </Wrapper>
   );
+};
+
+ProductDetails.propTypes = {
+  name: PropTypes.string,
+  variant: PropTypes.string,
+  description: PropTypes.string
 };

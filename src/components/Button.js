@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { colors, sizes, typography } from "../styles";
+import PropTypes from "prop-types";
 
-const Button = styled.button`
+const ButtonElm = styled.button`
   height: 50px;
   white-space: nowrap;
   border-radius: ${sizes.borderRadius.small}px;
@@ -16,9 +17,18 @@ const Button = styled.button`
   padding-left: ${sizes.gutter * 2}px;
   padding-right: ${sizes.gutter * 2}px;
   background: ${props =>
-    props.variant === "cta" ? colors.background.ctaTone1 : "yellow"};
+    props.variant === "primary"
+      ? colors.background.primaryTone1
+      : props.variant === "cta"
+      ? colors.background.ctaTone1
+      : "yellow"};
 `;
 
-export default ({ children, variant }) => {
-  return <Button variant={variant}>{children}</Button>;
+export const Button = ({ children, variant }) => {
+  return <ButtonElm variant={variant}>{children}</ButtonElm>;
+};
+
+Button.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.oneOf(["cta", "primary"])
 };

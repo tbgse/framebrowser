@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { sizes, typography, colors } from "../styles";
 import { Link } from "react-router-dom";
 import posed, { PoseGroup } from "react-pose";
-
+import PropTypes from "prop-types";
 const generateImageUrl = src => {
   return `https://images.aceandtate.com/image/upload/c_lfill,h_800,w_450/c_crop,h_500,w_460,y_260/v1/${src}`;
 };
+
 const generateHeadImageUrl = (src, width) => {
   return `https://images.aceandtate.com/image/upload/c_lfill,h_550,w_400/c_crop,h_500,w_400/v1/${src}`;
 };
@@ -16,10 +17,12 @@ const ContainerInner = styled.div`
   overflow: hidden;
   border-radius: ${sizes.borderRadius.small}px;
 `;
+
 const ImageContent = styled.img`
   width: 100%;
   border-radius: ${sizes.borderRadius.small}px;
 `;
+
 const faceAnimation = {
   enter: {
     opacity: 1,
@@ -27,6 +30,7 @@ const faceAnimation = {
   },
   exit: { opacity: 0, transition: { duration: 300 } }
 };
+
 const FaceOverlay = styled(posed.div(faceAnimation))`
   position: absolute;
   top: 0;
@@ -40,6 +44,7 @@ const FaceOverlay = styled(posed.div(faceAnimation))`
   pointer-events:none;
   background-image: url('${props => props.backgroundImage}');
 `;
+
 const TextContent = styled.div`
   position: absolute;
   height: 100%;
@@ -68,7 +73,7 @@ const ProductColor = styled.span`
   font-size: ${typography.fontSizes.medium}px;
 `;
 
-export default class ProductCard extends React.Component {
+export class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -148,3 +153,13 @@ export default class ProductCard extends React.Component {
     );
   }
 }
+
+ProductCard.propTypes = {
+  name: PropTypes.string,
+  colorName: PropTypes.string,
+  id: PropTypes.number,
+  backgroundUrl: PropTypes.string,
+  assetsToCache: PropTypes.array,
+  femaleHeadBackgroundUrl: PropTypes.string,
+  maleHeadBackgroundUrl: PropTypes.string
+};

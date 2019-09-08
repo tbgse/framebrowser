@@ -5,6 +5,7 @@ import { Checkbox } from "../components";
 import { connect } from "react-redux";
 import { getAllFilters } from "../redux/selectors";
 import { setFilter } from "../redux/actions";
+import PropTypes from "prop-types";
 
 const Container = styled.aside`
   min-width: 20%;
@@ -86,6 +87,10 @@ const Sidebar = ({ filters, setFilter }) => {
   );
 };
 
+Sidebar.propTypes = {
+  filters: PropTypes.array,
+  setFilter: PropTypes.func
+};
 const mapStateToProps = state => {
   const filters = getAllFilters(state);
   return { filters };

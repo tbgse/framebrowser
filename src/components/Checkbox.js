@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { typography, sizes } from "../styles";
-
+import PropTypes from "prop-types";
 // a lot of this is pretty much copied from the official page, so not really integrated into the shared stylesheets
-const Checkbox = styled.input`
+const CheckboxInput = styled.input`
   position: relative;
   background-color: initial;
   cursor: default;
@@ -81,15 +81,22 @@ const Label = styled.label`
   margin-left: ${sizes.gutter * 1.5}px;
   line-height: 32px;
 `;
-export default ({ label, checked, onChange }) => {
+
+export const Checkbox = ({ label, checked, onChange }) => {
   return (
     <CheckboxContainer>
-      <Checkbox
+      <CheckboxInput
         type="checkbox"
         checked={checked}
         onChange={onChange}
-      ></Checkbox>
+      ></CheckboxInput>
       <Label>{label}</Label>
     </CheckboxContainer>
   );
+};
+
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func
 };

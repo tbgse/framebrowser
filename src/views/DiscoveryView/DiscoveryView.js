@@ -5,6 +5,7 @@ import { getAllFilteredFrames, getScrollPosition } from "../../redux/selectors";
 import { sizes } from "../../styles";
 import styled from "styled-components";
 import posed, { PoseGroup } from "react-pose";
+import PropTypes from "prop-types";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -88,6 +89,11 @@ const DiscoveryView = ({ frames, scrollPosition }) => {
       </ContentWrapper>
     </div>
   );
+};
+
+DiscoveryView.propTypes = {
+  frames: PropTypes.array,
+  scrollPosition: PropTypes.number
 };
 
 const mapStateToProps = state => {

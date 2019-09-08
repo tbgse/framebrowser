@@ -1,2 +1,2 @@
-export { default as ProductGallery } from "./ProductGallery";
-export { default as ProductDetails } from "./ProductDetails";
+export { ProductGallery } from "./ProductGallery";
+export { ProductDetails } from "./ProductDetails";

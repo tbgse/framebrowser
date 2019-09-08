@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { ProductGallery, ProductDetails } from "./components";
 import posed from "react-pose";
 import { setScrollPosition } from "../../redux/actions";
+import PropTypes from "prop-types";
 
 const galleryFade = {
   hidden: {
@@ -93,6 +94,11 @@ class ProductView extends React.Component {
     window.scroll(0, 0);
   }
 }
+
+ProductView.propTypes = {
+  setScrollPosition: PropTypes.func,
+  frame: PropTypes.object
+};
 
 const mapStateToProps = (state, ownProps) => {
   const frameId = parseInt(ownProps.match.params.productId);

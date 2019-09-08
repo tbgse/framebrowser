@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setFrameData } from "./redux/actions";
 import { DiscoveryView } from "./views/DiscoveryView";
 import { ProductView } from "./views/ProductView";
-
+import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends React.Component {
@@ -36,6 +36,10 @@ class App extends React.Component {
       });
   }
 }
+
+App.propTypes = {
+  setFrameData: PropTypes.func
+};
 
 export default connect(
   null,

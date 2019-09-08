@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { sizes } from "../styles";
+import PropTypes from "prop-types";
 
 const List = styled.section`
   display: flex;
@@ -10,6 +11,10 @@ const List = styled.section`
   margin-left: -${sizes.gutter / 2}px;
 `;
 
-export default ({ children }) => {
+export const ListView = ({ children }) => {
   return <List>{children}</List>;
+};
+
+ListView.propTypes = {
+  children: PropTypes.node
 };

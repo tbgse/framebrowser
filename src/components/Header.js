@@ -26,7 +26,8 @@ const Logo = styled.svg`
     fill: rgba(0, 0, 0, 0.75);
   }
 `;
-export default () => {
+
+export const Header = () => {
   return (
     <Container>
       <Link to="/">

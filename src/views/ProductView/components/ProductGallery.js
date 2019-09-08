@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { sizes } from "../../../styles";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +13,8 @@ const Wrapper = styled.div`
     margin-bottom: ${sizes.gutter * 2}px;
   }
 `;
-export default ({ images, height, width }) => {
+
+export const ProductGallery = ({ images, height, width }) => {
   return (
     <Wrapper width={width}>
       {images.map((img, index) => (
@@ -30,4 +32,10 @@ export default ({ images, height, width }) => {
       ))}
     </Wrapper>
   );
+};
+
+ProductGallery.propTypes = {
+  images: PropTypes.array,
+  height: PropTypes.number,
+  width: PropTypes.number
 };
