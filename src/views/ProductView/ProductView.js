@@ -32,6 +32,9 @@ const Container = styled.div`
 `;
 const SlideUpWrapper = styled(posed.div(galleryFade))`
   display: flex;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 const SlideLeftWrapper = styled(posed.div(contentFade))`
   display: flex;
@@ -82,7 +85,7 @@ class ProductView extends React.Component {
         </Container>
       );
     } else {
-      return <div>No Product found</div>;
+      return null;
     }
   }
   componentDidMount() {

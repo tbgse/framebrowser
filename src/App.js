@@ -29,11 +29,10 @@ class App extends React.Component {
     getAllFrames()
       .then(res => {
         this.handleFrameLoad(res.data);
-        console.log(res);
       })
       .catch(err => {
         console.log(err);
-        // handle error
+        // errors could be handled here to display that we ran into API issues
       });
   }
 }

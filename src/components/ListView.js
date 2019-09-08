@@ -6,6 +6,7 @@ const List = styled.section`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  align-items: flex-start;
   margin-left: -${sizes.gutter / 2}px;
 `;
 

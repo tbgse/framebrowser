@@ -81,10 +81,14 @@ const Label = styled.label`
   margin-left: ${sizes.gutter * 1.5}px;
   line-height: 32px;
 `;
-export default ({ label }) => {
+export default ({ label, checked, onChange }) => {
   return (
     <CheckboxContainer>
-      <Checkbox type="checkbox"></Checkbox>
+      <Checkbox
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+      ></Checkbox>
       <Label>{label}</Label>
     </CheckboxContainer>
   );

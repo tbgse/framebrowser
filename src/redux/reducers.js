@@ -1,8 +1,15 @@
-import { SET_FRAME_DATA, SET_SCROLL_POSITION } from "./actionTypes";
+import { SET_FRAME_DATA, SET_SCROLL_POSITION, SET_FILTER } from "./actionTypes";
 
 const initialState = {
   frames: [],
-  scrollPosition: 0
+  scrollPosition: 0,
+  filters: {
+    acetate: false,
+    bio_acetate: false,
+    metal: false,
+    combi: false,
+    titanium: false
+  }
 };
 
 export default function(state = initialState, action) {
@@ -15,6 +22,15 @@ export default function(state = initialState, action) {
     return {
       ...state,
       scrollPosition: action.payload
+    };
+  } else if (action.type === SET_FILTER) {
+    const updatedFilters = {
+      ...state.filters,
+      [action.payload.key]: action.payload.value
+    };
+    return {
+      ...state,
+      filters: updatedFilters
     };
   } else {
     return state;

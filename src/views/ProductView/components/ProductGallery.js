@@ -15,10 +15,11 @@ const Wrapper = styled.div`
 export default ({ images, height, width }) => {
   return (
     <Wrapper width={width}>
-      {images.map(img => (
+      {images.map((img, index) => (
         <img
           src={img}
           alt=""
+          key={index}
           style={{
             height: height ? height : "auto",
             objectFit: "cover",

@@ -1,20 +1,20 @@
 import React from "react";
 import { ListView, ProductCard, Sidebar } from "../../components";
 import { connect } from "react-redux";
-import { getAllFrames, getScrollPosition } from "../../redux/selectors";
+import { getAllFilteredFrames, getScrollPosition } from "../../redux/selectors";
 import { sizes } from "../../styles";
 import styled from "styled-components";
-import posed from "react-pose";
+import posed, { PoseGroup } from "react-pose";
 
 const ContentWrapper = styled.div`
   display: flex;
 `;
 const cardAnimation = {
-  hidden: {
+  exit: {
     opacity: 0,
     y: 20
   },
-  visible: {
+  enter: {
     opacity: 1,
     y: 0,
     delay: ({ stagger }) => stagger * 100
@@ -31,6 +31,7 @@ const AnimatedCard = styled(posed.div(cardAnimation))`
   cursor: pointer;
   background: linear-gradient(to right, #f0eae8, #f4eeec);
 `;
+
 const SpaceBlock = styled.div`
   height: 0;
   border: none;
@@ -38,8 +39,8 @@ const SpaceBlock = styled.div`
   min-width: 250px;
   flex: 1;
 `;
+
 const DiscoveryView = ({ frames, scrollPosition }) => {
-  console.log(scrollPosition);
   const CardList = frames
     .filter(frame => {
       // filtering out products that have no variants / images set
@@ -58,8 +59,8 @@ const DiscoveryView = ({ frames, scrollPosition }) => {
         style={{ width: "250px" }}
         key={frame.variants[0].id}
         pose="visible"
+        poseKey={frame.id}
         initialPose={scrollPosition > 300 ? "visible" : "hidden"}
-        stagger={i}
       >
         <ProductCard
           id={frame.id}
@@ -80,7 +81,7 @@ const DiscoveryView = ({ frames, scrollPosition }) => {
       <ContentWrapper>
         <Sidebar></Sidebar>
         <ListView>
-          {CardList}
+          <PoseGroup flipMove={false}>{CardList}</PoseGroup>
           <SpaceBlock />
           <SpaceBlock />
         </ListView>
@@ -90,7 +91,7 @@ const DiscoveryView = ({ frames, scrollPosition }) => {
 };
 
 const mapStateToProps = state => {
-  const frames = getAllFrames(state);
+  const frames = getAllFilteredFrames(state);
   const scrollPosition = getScrollPosition(state);
   return { frames, scrollPosition };
 };

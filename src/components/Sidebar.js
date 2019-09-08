@@ -2,9 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { typography, sizes } from "../styles";
 import { Checkbox } from "../components";
+import { connect } from "react-redux";
+import { getAllFilters } from "../redux/selectors";
+import { setFilter } from "../redux/actions";
 
 const Container = styled.aside`
   min-width: 20%;
+  margin-right: 20px;
+  white-space: nowrap;
 `;
 
 const FilterCategory = styled.h4`
@@ -16,16 +21,42 @@ const FilterCategory = styled.h4`
 const FilterSection = styled.div`
   margin-bottom: ${sizes.gutter * 2}px;
 `;
-export default () => {
+const Sidebar = ({ filters, setFilter }) => {
+  const toggleFilter = key => {
+    setFilter({
+      key,
+      value: !filters[key]
+    });
+  };
   return (
     <Container>
       <FilterSection>
         <FilterCategory>material</FilterCategory>
-        <Checkbox label="acetate"></Checkbox>
-        <Checkbox label="bio acetate"></Checkbox>
-        <Checkbox label="metal"></Checkbox>
-        <Checkbox label="combi"></Checkbox>
-        <Checkbox label="titanium"></Checkbox>
+        <Checkbox
+          label="acetate"
+          checked={filters.acetate}
+          onChange={() => toggleFilter("acetate")}
+        ></Checkbox>
+        <Checkbox
+          label="bio acetate"
+          checked={filters.bio_acetate}
+          onChange={() => toggleFilter("bio_acetate")}
+        ></Checkbox>
+        <Checkbox
+          label="metal"
+          checked={filters.metal}
+          onChange={() => toggleFilter("metal")}
+        ></Checkbox>
+        <Checkbox
+          label="combi"
+          checked={filters.combi}
+          onChange={() => toggleFilter("combi")}
+        ></Checkbox>
+        <Checkbox
+          label="titanium"
+          checked={filters.titanium}
+          onChange={() => toggleFilter("titanium")}
+        ></Checkbox>
       </FilterSection>
       <FilterSection>
         <FilterCategory>shape</FilterCategory>
@@ -54,3 +85,13 @@ export default () => {
     </Container>
   );
 };
+
+const mapStateToProps = state => {
+  const filters = getAllFilters(state);
+  return { filters };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilter }
+)(Sidebar);
