@@ -6,11 +6,14 @@ import { connect } from "react-redux";
 import { getAllFilters } from "../redux/selectors";
 import { setFilter } from "../redux/actions";
 import PropTypes from "prop-types";
-
+import { Button } from "./Button";
 const Container = styled.aside`
   min-width: 20%;
   margin-right: 20px;
   white-space: nowrap;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const FilterCategory = styled.h4`
@@ -19,15 +22,20 @@ const FilterCategory = styled.h4`
   font-weight: 500;
   margin-bottom: ${sizes.gutter}px;
 `;
+
 const FilterSection = styled.div`
   margin-bottom: ${sizes.gutter * 2}px;
 `;
+
 const Sidebar = ({ filters, setFilter }) => {
   const toggleFilter = key => {
     setFilter({
       key,
       value: !filters[key]
     });
+  };
+  const showFilterWarning = () => {
+    alert("Only the material filters are implemented");
   };
   return (
     <Container>
@@ -61,36 +69,37 @@ const Sidebar = ({ filters, setFilter }) => {
       </FilterSection>
       <FilterSection>
         <FilterCategory>shape</FilterCategory>
-        <Checkbox label="round"></Checkbox>
-        <Checkbox label="square"></Checkbox>
-        <Checkbox label="rectangle"></Checkbox>
+        <Checkbox label="round" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="square" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="rectangle" onChange={showFilterWarning}></Checkbox>
       </FilterSection>
       <FilterSection>
         <FilterCategory>width</FilterCategory>
-        <Checkbox label="narrow"></Checkbox>
-        <Checkbox label="medium"></Checkbox>
-        <Checkbox label="wide"></Checkbox>
+        <Checkbox label="narrow" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="medium" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="wide" onChange={showFilterWarning}></Checkbox>
       </FilterSection>
       <FilterSection>
         <FilterCategory>colour</FilterCategory>
-        <Checkbox label="coloured"></Checkbox>
-        <Checkbox label="light"></Checkbox>
-        <Checkbox label="dark"></Checkbox>
-        <Checkbox label="transparent"></Checkbox>
+        <Checkbox label="coloured" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="light" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="dark" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="transparent" onChange={showFilterWarning}></Checkbox>
       </FilterSection>
       <FilterSection>
         <FilterCategory>price from</FilterCategory>
-        <Checkbox label="€98"></Checkbox>
-        <Checkbox label="€148"></Checkbox>
+        <Checkbox label="€98" onChange={showFilterWarning}></Checkbox>
+        <Checkbox label="€148" onChange={showFilterWarning}></Checkbox>
       </FilterSection>
     </Container>
   );
 };
 
 Sidebar.propTypes = {
-  filters: PropTypes.array,
+  filters: PropTypes.object,
   setFilter: PropTypes.func
 };
+
 const mapStateToProps = state => {
   const filters = getAllFilters(state);
   return { filters };

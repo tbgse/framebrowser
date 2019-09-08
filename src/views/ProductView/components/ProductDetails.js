@@ -9,17 +9,31 @@ const Wrapper = styled.div`
   min-width: 260px;
   display: flex;
   flex-flow: column;
+  @media (max-width: 600px) {
+    margin-left: 0;
+    width: 100%;
+    margin-top: ${sizes.gutter * 2}px;
+  }
 `;
 const ModelName = styled.h2`
   margin: 0;
   font-size: ${typography.fontSizes.xxl}px;
   font-weight: 500;
   white-space: nowrap;
+  @media (max-width: 600px) {
+    white-space: pre-line;
+    line-height: 1;
+    font-size: ${typography.fontSizes.xl}px;
+    margin-bottom: ${sizes.gutter}px;
+  }
 `;
 const ModelStyle = styled.span`
   font-size: ${typography.fontSizes.xl}px;
   line-height: 1;
   font-weight: 300;
+  @media (max-width: 600px) {
+    font-size: ${typography.fontSizes.large}px;
+  }
 `;
 const OrderInfo = styled.span`
   font-size: ${typography.fontSizes.small}px;

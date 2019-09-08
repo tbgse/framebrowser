@@ -30,15 +30,23 @@ const contentFade = {
 };
 const Container = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+  }
 `;
+
 const SlideUpWrapper = styled(posed.div(galleryFade))`
   display: flex;
   @media (max-width: 900px) {
     flex-direction: column;
   }
 `;
+
 const SlideLeftWrapper = styled(posed.div(contentFade))`
   display: flex;
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
 `;
 const generateHeadImageUrl = (src, width) => {
   return `https://images.aceandtate.com/image/upload/c_lfill,h_550,w_400/c_crop,h_500,w_400/v1/${src}`;

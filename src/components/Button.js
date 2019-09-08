@@ -7,7 +7,7 @@ const ButtonElm = styled.button`
   height: 50px;
   white-space: nowrap;
   border-radius: ${sizes.borderRadius.small}px;
-  border: none;
+  border: ${props => (props.variant === "outline" ? "2px solid #000" : "none")}
   font-weight: 500;
   font-size: ${typography.fontSizes.medium}px;
   text-transform: uppercase;
@@ -21,7 +21,9 @@ const ButtonElm = styled.button`
       ? colors.background.primaryTone1
       : props.variant === "cta"
       ? colors.background.ctaTone1
-      : "yellow"};
+      : props.variant === "outline"
+      ? "transparent"
+      : "#ccc"};
 `;
 
 export const Button = ({ children, variant }) => {
@@ -30,5 +32,5 @@ export const Button = ({ children, variant }) => {
 
 Button.propTypes = {
   children: PropTypes.node,
-  variant: PropTypes.oneOf(["cta", "primary"])
+  variant: PropTypes.oneOf(["cta", "primary", "outline"])
 };

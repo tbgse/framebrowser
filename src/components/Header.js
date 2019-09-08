@@ -8,6 +8,11 @@ const Container = styled.section`
   display: flex;
   align-items: center;
   margin-bottom: ${sizes.gutter * 2}px;
+  @media (max-width: 400px) {
+    height: 100px;
+    margin-bottom: 0;
+    margin-top: ${sizes.gutter * 2}px;
+  }
 `;
 
 const Title = styled.h2`
@@ -17,6 +22,13 @@ const Title = styled.h2`
   position: relative;
   top: 10px;
   font-weight: 300;
+  @media (max-width: 600px) {
+    font-size: ${typography.fontSizes.large}px;
+  }
+  @media (max-width: 400px) {
+    top: -3px;
+    font-size: ${typography.fontSizes.medium}px;
+  }
 `;
 
 const Logo = styled.svg`
@@ -24,6 +36,15 @@ const Logo = styled.svg`
   margin-left: -10px;
   :hover {
     fill: rgba(0, 0, 0, 0.75);
+  }
+  @media (max-width: 600px) {
+    width: 80px;
+    height: 80px;
+  }
+  @media (max-width: 400px) {
+    width: 60px;
+    height: 60px;
+    margin-left: 0;
   }
 `;
 

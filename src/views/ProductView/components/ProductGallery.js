@@ -12,6 +12,10 @@ const Wrapper = styled.div`
   img {
     margin-bottom: ${sizes.gutter * 2}px;
   }
+  @media (max-width: 600px) {
+    max-width: 100%;
+    margin-right: 0;
+  }
 `;
 
 export const ProductGallery = ({ images, height, width }) => {
