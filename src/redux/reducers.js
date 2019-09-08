@@ -1,7 +1,8 @@
-import { SET_FRAME_DATA } from "./actionTypes";
+import { SET_FRAME_DATA, SET_SCROLL_POSITION } from "./actionTypes";
 
 const initialState = {
-  frames: []
+  frames: [],
+  scrollPosition: 0
 };
 
 export default function(state = initialState, action) {
@@ -9,6 +10,11 @@ export default function(state = initialState, action) {
     return {
       ...state,
       frames: action.payload
+    };
+  } else if (action.type === SET_SCROLL_POSITION) {
+    return {
+      ...state,
+      scrollPosition: action.payload
     };
   } else {
     return state;

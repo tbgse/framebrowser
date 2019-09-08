@@ -4,6 +4,7 @@ export default {
     primaryTone1: "rgb(0, 51, 153)"
   },
   background: {
-    primaryTone1: "rgb(0, 51, 153)"
+    primaryTone1: "rgb(0, 51, 153)",
+    ctaTone1: "rgb(255, 204, 51)"
   }
 };

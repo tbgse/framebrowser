@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import posed, { PoseGroup } from "react-pose";
 
 const generateImageUrl = src => {
-  return `https://images.aceandtate.com/image/upload/c_lfill,h_1855,w_2000/c_crop,h_1200,w_960,x_520,y_520/v1/${src}`;
+  return `https://images.aceandtate.com/image/upload/c_lfill,h_800,w_450/c_crop,h_500,w_460,y_260/v1/${src}`;
 };
 const generateHeadImageUrl = (src, width) => {
   return `https://images.aceandtate.com/image/upload/c_lfill,h_550,w_400/c_crop,h_500,w_400/v1/${src}`;
@@ -72,6 +72,7 @@ export default class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      assetsCached: false,
       activeHead: 0,
       femaleHeadParsedUrl: props.femaleHeadBackgroundUrl
         ? generateHeadImageUrl(props.femaleHeadBackgroundUrl)
@@ -99,6 +100,16 @@ export default class ProductCard extends React.Component {
     } else if (this.props.femaleHeadBackgroundUrl) {
       this.setState({
         activeHead: 2
+      });
+    }
+    // preloading other frame assets in case the user navigates
+    if (!this.state.assetsCached && this.props.assetsToCache) {
+      this.props.assetsToCache.forEach(asset => {
+        let img = new Image();
+        img.src = generateImageUrl(asset);
+      });
+      this.setState({
+        assetsCached: true
       });
     }
   }

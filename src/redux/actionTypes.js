@@ -1,1 +1,2 @@
 export const SET_FRAME_DATA = "SET_FRAME_DATA";
+export const SET_SCROLL_POSITION = "SET_SCROLL_POSITION";
